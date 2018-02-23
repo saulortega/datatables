@@ -1,16 +1,20 @@
 # datatables
-Parser for Datatables
+Simple parser for Datatables.
 
 # Usage
 
+```go
+import "github.com/saulortega/datatables"
+
 filter, err = datatables.Parse(r)
 if err != nil {
-  //Handle error
+	//Handle error
 }
+```
 
 # Struct
 
-```
+```go
 type Filter struct {
 	Draw        int
 	Start       int
