@@ -1,5 +1,5 @@
 # datatables
-Simple parser for Datatables.
+Simple parser for [Datatables](https://datatables.net/).
 
 # Install
 
