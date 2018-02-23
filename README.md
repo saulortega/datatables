@@ -10,6 +10,7 @@ if err != nil {
 
 # Struct
 
+```
 type Filter struct {
 	Draw        int
 	Start       int
@@ -34,3 +35,4 @@ type Order struct {
 	Column Column
 	Dir    string
 }
+```
