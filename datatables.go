@@ -149,13 +149,12 @@ func parse(r *http.Request) (Filter, error) {
 
 		o := Order{Dir: dir}
 		for _, c := range F.Columns {
-			if c.Index == ic {
+			if c.Index == ic && c.Orderable {
 				o.Column = c
 				break
 			}
 		}
 		if o.Column == (Column{}) {
-			errores = append(errores, "column with index "+strconv.Itoa(ic)+" not found")
 			continue
 		}
 
