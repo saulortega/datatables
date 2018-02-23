@@ -1,11 +1,18 @@
 # datatables
 Simple parser for Datatables.
 
+# Install
+
+```
+go get github.com/saulortega/datatables
+```
+
 # Usage
 
 ```go
 import "github.com/saulortega/datatables"
 
+//Parse receive *http.Request and returns a Filter struct
 filter, err = datatables.Parse(r)
 if err != nil {
 	//Handle error
