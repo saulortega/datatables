@@ -34,7 +34,7 @@ if err != nil {
 
 ```
 
-# Struct
+# Structs
 
 ```go
 type Filter struct {
