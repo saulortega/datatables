@@ -1,5 +1,5 @@
 # datatables
-Simple parser for [DataTables](https://datatables.net/).
+Simple parser for [DataTables](https://datatables.net/) server-side processing.
 
 # Install
 
