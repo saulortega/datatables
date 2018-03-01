@@ -49,6 +49,10 @@ func MustParse(r *http.Request) Filter {
 	return f
 }
 
+func (f *Filter) PrepareResponse() Response {
+	return Response{Draw: f.Draw}
+}
+
 func parse(r *http.Request) (Filter, error) {
 	var E error
 	var F = Filter{
@@ -59,6 +63,27 @@ func parse(r *http.Request) (Filter, error) {
 	var errores = []string{}
 	var mapColsTmp = make(map[int]map[string]string)
 	var mapOrdsTmp = make(map[int]map[string]string)
+
+	F.Draw, E = ptoi(r, "draw")
+	if E != nil {
+		errores = append(errores, E.Error())
+	}
+	F.Start, E = ptoi(r, "start")
+	if E != nil {
+		errores = append(errores, E.Error())
+	}
+	F.Length, E = ptoi(r, "length")
+	if E != nil {
+		errores = append(errores, E.Error())
+	}
+	F.SearchValue, E = ptos(r, "search[value]")
+	if E != nil {
+		errores = append(errores, E.Error())
+	}
+	F.SearchRegex, E = ptob(r, "search[regex]")
+	if E != nil {
+		errores = append(errores, E.Error())
+	}
 
 	for ll, v := range r.Form {
 		if regexp.MustCompile(`^columns\[`).MatchString(ll) {
@@ -90,28 +115,6 @@ func parse(r *http.Request) (Filter, error) {
 				mapOrdsTmp[i] = make(map[string]string)
 			}
 			mapOrdsTmp[i][p[1]] = v[0]
-		} else if ll == "search[value]" {
-			F.SearchValue = strings.TrimSpace(v[0])
-		} else if ll == "search[regex]" {
-			F.SearchRegex, E = strconv.ParseBool(v[0])
-			if E != nil {
-				errores = append(errores, E.Error())
-			}
-		} else if ll == "start" {
-			F.Start, E = strconv.Atoi(v[0])
-			if E != nil {
-				errores = append(errores, E.Error())
-			}
-		} else if ll == "length" {
-			F.Length, E = strconv.Atoi(v[0])
-			if E != nil {
-				errores = append(errores, E.Error())
-			}
-		} else if ll == "draw" {
-			F.Draw, E = strconv.Atoi(v[0])
-			if E != nil {
-				errores = append(errores, E.Error())
-			}
 		}
 	}
 
