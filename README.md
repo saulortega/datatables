@@ -27,9 +27,10 @@ response.Data = rows
 
 //WriteResponse receive http.ResponseWriter. It send the response even if there are any error.
 //Use WriteResponseOnSuccess(w) if you do not want to send the response when there is an error.
-response.WriteResponse(w)
-
-//
+err := response.WriteResponse(w)
+if err != nil {
+	//Handle error
+}
 
 ```
 
