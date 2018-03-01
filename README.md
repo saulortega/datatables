@@ -4,7 +4,7 @@ Simple parser for [DataTables](https://datatables.net/) server-side processing.
 # Install
 
 ```
-go get github.com/saulortega/datatables
+go get -u github.com/saulortega/datatables
 ```
 
 # Usage
