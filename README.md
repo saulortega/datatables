@@ -17,6 +17,20 @@ filter, err = datatables.Parse(r)
 if err != nil {
 	//Handle error
 }
+
+//Get data from DB
+
+response := filter.PrepareResponse()
+response.RecordsTotal = 629635
+response.RecordsFiltered = 50
+response.Data = rows
+
+//WriteResponse receive http.ResponseWriter. It send the response even if there are any error.
+//Use WriteResponseOnSuccess(w) if you do not want to send the response when there is an error.
+response.WriteResponse(w)
+
+//
+
 ```
 
 # Struct
